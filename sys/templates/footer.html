@@ -1,0 +1,77 @@
+<!--
+This file is distributed under the terms of the GNU General Public License.
+For complete license information, please see license.txt in the root directory.
+-->
+
+<!-- {footer} -->
+							<!-- Pages done generating here! (start the footer at this line...) !-->
+					 		</td>
+					 	</tr>
+					 </table>
+			<div class="footer">
+                <table cellpadding="3" cellspacing="0" border="0" width="100%">
+                    <tr>
+                        <td width="100%" align="center" class="footer">
+                            <p>
+                            <br />
+                            </p>
+                            <p>
+                                <a href="http://help.furaffinity.net/article/AA-00210/7/Advertising.html">Advertising</a> |
+                                <a href="http://www.faunited.org">FA United</a> |
+                                <a href="http://donations.furaffinity.net/">Site Donations</a> |
+                                <a href="http://twitter.com/furaffinity">Twitter</a> |
+                                <a href="https://www.facebook.com/furaffinity">Facebook</a> |
+                                <a href="http://help.furaffinity.net/article/AA-00203/8/Terms-of-Service-TOS.html">Terms of Service (TOS)</a> |
+                                <a href="http://help.furaffinity.net/article/AA-00204/8/Submission-Agreement-SA.html">Submission Agreement (SA)</a> |
+                                <a href="http://help.furaffinity.net/article/AA-00205/8/Acceptable-Upload-Policy-AUP.html">Acceptable Upload Policy (AUP)</a>
+                            </p>
+
+                            Fur Affinity is &copy; 2005-2011 Ferrox Art LLC<br /><br />
+                            Server Local Time: January 19th, 2012 01:59                            <br />
+                            Page generated in 0.03 seconds [ 49.9% PHP, 50.1% SQL ] (17 queries)                        </td>
+                    </tr>
+                </table>
+            </div>
+        </td>
+    </tr>
+</table>
+</div>
+
+
+
+
+
+<script type="text/javascript">
+    LazyLoad.load('/js/prototype.1.6.1.js', function(){
+        LazyLoad.load('/js/script.js', function(){
+            Queue.process();
+
+            init_dropdown_menu();
+            register_logout_onclick_handler();
+
+            // Load and init ads
+            LazyLoad.load(document.location.protocol+'//ox.furaffinity.net/js/spcjs_json.php?id=1&block=1', function(){
+                if(typeof(ox_datajs_url) != 'undefined')
+                {
+                    LazyLoad.load(ox_datajs_url.replace('fab.php', 'fab_json.php'), function(){
+                        var ad_template = new Template('<a href="#{link}" target="_blank"><img src="#{img}" width="#{width}" height="#{height}" alt="" title="" border="0" /></a>');
+
+                        $$('div.ads').each(function(elm){
+                            elm.select('div.ad').each(function(elm){
+                                var ad_id = elm.id.replace('ad-', '');
+                                // make ox image url's protocol aware
+                                ox_data[ad_id].img = ox_data[ad_id].img.replace(/^http:/, document.location.protocol);
+                                // I know, innerHTML is evil. But alas, it's faster then creating the same structures via DOM
+                                elm.innerHTML = ad_template.evaluate(ox_data[ad_id]);
+                                elm.className = 'ad';
+                            });
+
+                            elm.removeClassName('hidden');
+                        });
+                    });
+                }
+            });
+        });
+    });
+</script>
+
