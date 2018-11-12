@@ -1,5 +1,5 @@
-# openaffinity
-An Open-Source version of FurAffinity forked from Tanz on the Google Code project before it went extinct.
+# What is openaffinity
+An Open-Source version of FurAffinity forked from Tanz on the Google Code project before it went extinct. It's still available on Google Code but can no longer be updated on their platform.
 
 ## Why bother?
 
